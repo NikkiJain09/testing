@@ -1,0 +1,24 @@
+
+I/p: Binary tree
+O/P: Depth of the tree
+
+===================Proposed Algorithm===================
+
+
+1. Given a binary tree (with no duplicate nodes) convert it into complete binary tree(CBT), also count the no of nodes now there in the CBT
+2. Find the Preorder, Postorder and Inorder  of the tree parallely and store it into 3 respective strings.
+3. Root of the tree can be identified using the Preorder and Postorder string, after that look for the occurance of the root in the inorder string, and see which part is heavier in the string[left or right] with respect to the root node
+4. Remove the least heavier part of the string along with the root node from inorder, Preorder and Post order string (for heaviness see only the actual nodes, not the appended nodes of the complete binary tree)
+5. repeat the step 3 until length of Inorder(or any other) string becomes equal to one, also keep a counter to check the no of steps being executed
+6. This way we can find the depth of the tree
+
+
+
+
+No of steps it will take: O(logN)...log base 2 N	//where N is the no of nodes in the CBT
+Computation per step:	O(N)
+No of processors allocated in the whole Parallel algorithm:	3
+
+so the runtime complexity of the algorithm is : O(NlogN)
+
+Overall work being done is: O(3NlogN)

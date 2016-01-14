@@ -1,0 +1,31 @@
+1. CPU
+JRE, JVM, VBscript...wala saman, OS(Windows)
+
+->through this module, we can monitor the system CPU usage, this featue can be exploit to the great extent to measure the similarity between the user current and past usage pattern.
+->If suddenly cpu usage crosses crertain threshold, user is notified. Hence, we can stop the malicious process within short interval of time, so not much impact will be there on system.
+But this system requires continous computation, so some of the cpu percentage will be exploited by this. also it will work only for windows os
+
+
+2. Memory
+monitors the memory used by a process, from this phase, we dont monitor the system related process, which have been extracted from multiple system on their respective just starting time period.
+
+if certain program fetches memory more than certain threshold, then that process is brought to the user sight, hence if the process is not started by user, and it seems to be malicous, user can kill it.
+
+same disadv
+
+HIGHLIGHT THIS POINT THROUGH SOME GOOD WRITING PATTERN
+## 1 and 2 are very important with respect to VM, as cloud model is based on pay per user module, so if unnecessary resourec is being consumed, it brings financial loss to the user
+
+3. Status of program
+
+if large no of processs in a system, comes to not responding state, it is indicating that some thing wrong  is happeninig with the system, will bring all the process running to  the user's sight, and then he/she can check for the unknown process going on, and hence can stop it immmediately from running, and to prevent any loss to the system.
+
+
+4. Bytes transfer
+
+again if network being utilised more it brings loss to user because of pay per use model of cloud. Hence we are specificall looking for the uploading phase, as it may be possible that some malicious process may be trying to copy files from user's system and sending to its boss (malicious side server). 
+Hence through this module, we are trying to monitor the bytes being send through the system , if increase beyond normal usage then bring the process in the user's sight and get it validated fromthe user. Hence if it is malicious then it will be killed by the user.
+
+disadv:
+compuation
+and by the time  it gets detected, many bytes has been already being transfered by the malicious process, so some more stronger  heuristics are required to detect this possible phase of attack.

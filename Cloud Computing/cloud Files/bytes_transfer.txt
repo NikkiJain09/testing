@@ -1,0 +1,12 @@
+
+C:\Users\abc\Desktop\cloud>netstat -e 
+Interface Statistics
+
+                           Received            Sent
+
+Bytes                      47787125        17688795
+Unicast packets               96470           96775
+Non-unicast packets            6300            3945
+Discards                          0               0
+Errors                            0               0
+Unknown protocols                 0

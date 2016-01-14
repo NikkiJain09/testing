@@ -1,0 +1,10 @@
+Future work:
+
+1. Monitring any changes of files in C: Drive, or whereever, systems files are stored
+2. Network Utilisation monitoring
+3. HTTP packets body content monitoring
+4. Memory Utilisation monitoring
+5. Finding deviation in user pattern of usage, and if gets deviated to large extend..report to user
+6. Stop running or allowing any changes to occur in already running malicious activity, and iff users says its not malicious, then allow to run, else kill that process.
+7. Extend this work for other operating sysetms also
+8. Check HTTP Body

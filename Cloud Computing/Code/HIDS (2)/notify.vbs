@@ -1,0 +1,1 @@
+Wscript.echo "CPU utilization has increased abruptly. Your PC may be under an attack."

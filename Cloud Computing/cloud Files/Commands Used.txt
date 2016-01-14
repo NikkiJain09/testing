@@ -1,0 +1,7 @@
+tasklist /v>1.txt
+
+typeperf -qx PhysicalDisk -o counters.txt
+
+netstat -e>bytes_transfer.txt
+
+mem /p

@@ -1,0 +1,496 @@
+﻿package edit_distance;
+
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class NewChecker
+{
+    public static class pass
+    {
+        public String[] orginal;
+        public int i;
+    }
+    public static int boundary_checker(String hien, String en)
+    {
+        int c1=0,c2=0;        
+        Character en_f=en.charAt(0), en_e=en.charAt(en.length()-1),hien_f=hien.charAt(0), hien_e=hien.charAt(hien.length()-1);
+        System.out.println("Hindi Front Char: "+hien_f);
+        System.out.println("Hindi End Char: "+hien_e);
+        System.out.println("English Front Char: "+en_f);
+        System.out.println("English End Char: "+en_e);
+        //् what to do with this?
+        if((en_f.compareTo('a')==0) || (en_f.compareTo('e')==0) || (en_f.compareTo('i')==0) || (en_f.compareTo('o')==0) || (en_f.compareTo('u')==0))    
+            c1=1;
+        //what is for 'अ' like other vowels had
+        if((hien_f.compareTo('अ')==0) || (hien_f.compareTo('आ')==0) || (hien_f.compareTo('ा')==0) || (hien_f.compareTo('इ')==0) || ((hien_f.compareTo('ि'))==0) || (hien_f.compareTo('ई')==0) || ((hien_f.compareTo('ी'))==0) || (hien_f.compareTo('उ')==0)|| (hien_f.compareTo('ु')==0)|| (hien_f.compareTo('ऊ')==0)|| (hien_f.compareTo('ू')==0)|| (hien_f.compareTo('ए')==0)|| ((hien_f.compareTo('े'))==0) || (hien_f.compareTo('ऐ')==0)|| (hien_f.compareTo('ै')==0)|| (hien_f.compareTo('ओ')==0)|| (hien_f.compareTo('ो')==0)|| (hien_f.compareTo('औ')==0) || (hien_f.compareTo('ौ')==0))    
+            c2=1;   
+        if(c1!=c2)
+            return 0;
+        
+        c1=c2=0;
+        //No stop word removal
+        if((en_e.compareTo('a')==0) || (en_e.compareTo('e')==0) ||(en_e.compareTo('i')==0) || (en_e.compareTo('o')==0) || (en_e.compareTo('u')==0))    
+            c1=1;
+        if((hien_e.compareTo('अ')==0) || (hien_e.compareTo('आ')==0) || (hien_e.compareTo('ा')==0) ||(hien_e.compareTo('इ')==0) || ((hien_e.compareTo('ि'))==0) || (hien_e.compareTo('ई')==0) || ((hien_e.compareTo('ी'))==0) || (hien_e.compareTo('उ')==0)|| (hien_e.compareTo('ु')==0) || (hien_e.compareTo('ऊ')==0)|| (hien_e.compareTo('ू')==0) || (hien_e.compareTo('ए')==0) || (hien_e.compareTo('े')==0) || (hien_e.compareTo('ऐ')==0)|| (hien_e.compareTo('ै')==0)|| (hien_e.compareTo('ओ')==0)|| (hien_e.compareTo('ो')==0)|| (hien_e.compareTo('औ')==0) || (hien_e.compareTo('ौ')==0))    
+            c2=1;
+        if(c1!=c2)
+            return 0;
+
+        return 1;
+    }
+    public static String remove_vowels(String x)
+    {
+        int len=x.length();
+        Character ch;
+        String s="";
+        for(int i=0; i<len; i++)
+        {
+            ch=x.charAt(i);
+            if((ch.compareTo('a')==0)||(ch.compareTo('e')==0)||(ch.compareTo('i')==0)||(ch.compareTo('o')==0)||(ch.compareTo('u')==0)||(ch.compareTo('अ')==0)||(ch.compareTo('आ')==0)||(ch.compareTo('इ')==0)||(ch.compareTo('ई')==0)||(ch.compareTo('उ')==0)||(ch.compareTo('ऊ')==0)||(ch.compareTo('ए')==0)||(ch.compareTo('ऐ')==0)||(ch.compareTo('ओ')==0)||(ch.compareTo('औ')==0) || (ch.compareTo('ा')==0)|| (ch.compareTo('ि')==0)|| (ch.compareTo('ी')==0)||(ch.compareTo('ु')==0)|| (ch.compareTo('ू')==0)|| (ch.compareTo('े')==0)|| (ch.compareTo('ै')==0)|| (ch.compareTo('ो')==0)|| (ch.compareTo('ौ')==0)||(ch.compareTo('्')==0) )
+            {}    
+            else
+                s+=x.charAt(i);
+        }
+        return s;
+    }
+    public static HashSet replacement(String u)
+    {      
+        Character ch,x;
+        String str=u;
+        HashSet<String> hs = new HashSet<String>();
+        hs.add(u);
+        List<String> list = new CopyOnWriteArrayList<String>();
+	list.add(u);
+        for(int i=0; i<u.length(); i++)
+        {
+            ch=u.charAt(i);
+            if((u.length()-i)>2)
+            {
+                if(ch.equals('श'))//श्र
+                {
+                    x=u.charAt(i+1);
+                    if(x.equals('्'))
+                    {
+                        x=u.charAt(i+2);
+                        if(x.equals('र'))
+                        {
+                            u=((u.substring(0, i))+(u.substring(i+2)));
+                            list.add(u.replace("र","s"));
+                        }
+                    }
+                }
+                if(ch.equals('ज'))//ज्ञ
+                {
+                    x=u.charAt(i+1);
+                    if(x.equals('्'))
+                    {
+                        x=u.charAt(i+2);
+                        if(x.equals('ञ'))
+                        {
+                            u=((u.substring(0, i))+(u.substring(i+3)));
+                            list.add(u.replace("ञ","g"));
+                            list.add(u.replace("ञ","j"));
+                        }
+                    }
+                }
+                if(ch.equals('त'))//त्र
+                {
+                    x=u.charAt(i+1);
+                    if(x.equals('्'))
+                    {
+                        x=u.charAt(i+2);
+                        if(x.equals('र'))
+                        {
+                            u=((u.substring(0, i))+(u.substring(i+2)));
+                            list.add(u.replace("र","t"));
+                        }
+                    }
+                }
+                if(ch.equals('क'))//क्ष
+                {
+                    x=u.charAt(i+1);
+                    if(x.equals('्'))
+                    {
+                        x=u.charAt(i+2);
+                        if(x.equals('ष'))
+                        {
+                            u=((u.substring(0, i))+(u.substring(i+2)));
+                            list.add(u.replace("ष","s"));
+                        }
+                    }
+                }
+            }
+            try
+            {
+                for(Object o : list)
+                {   
+                    str= (String)o;  
+                    if(ch.equals('ं'))   //EXTRA
+                    {
+                        list.add(str.replace("ं","n"));
+                        list.add(str.replace("ं","an"));
+                        list.add(str.replace("ं",""));
+                    }
+                    if(ch.equals('ँ'))   //EXTRA
+                        list.add(str.replace("ँ","an"));
+                    if(ch.equals('ः'))   //EXTRA
+                        list.add(str.replace("ः","h"));
+                    if(ch.equals('्'))
+                        list.add(str.replace("्",""));
+                    
+                    if(ch.equals('अ'))
+                        list.add(str.replace("अ","a"));
+                    if(ch.equals('आ'))
+                        list.add(str.replace("आ", "aa"));
+                    if(ch.equals('इ'))
+                        list.add(str.replace("इ","i"));
+                    if(ch.equals('ई'))
+                        list.add(str.replace("ई","ee"));
+                    if(ch.equals('उ'))
+                        list.add(str.replace("उ","u"));
+                    if(ch.equals('ऊ'))
+                        list.add(str.replace("ऊ","oo"));
+                    if(ch.equals('ए'))
+                        list.add(str.replace("ए","e"));
+                    if(ch.equals('ऐ'))
+                        list.add(str.replace("ऐ","ai"));
+                    if(ch.equals('ओ'))
+                        list.add(str.replace("ओ","o"));
+                    if(ch.equals('औ'))
+                        list.add(str.replace("औ","au"));
+                    if(ch.equals('ा'))
+                        list.add(str.replace("ा","a"));
+                    if(ch.equals('ि'))
+                        list.add(str.replace("ि","i"));
+                    if(ch.equals('ी'))
+                    {
+                        list.add(str.replace("ी","ee"));
+                        list.add(str.replace("ी","i"));
+                    }
+                    if(ch.equals('ु'))
+                        list.add(str.replace("ु","u"));
+                    if(ch.equals('ू'))
+                        list.add(str.replace("ू","oo"));
+                    if(ch.equals('े'))
+                        list.add(str.replace("े","e"));
+                    if(ch.equals('ै'))
+                        list.add(str.replace("ै","ai"));
+                    if(ch.equals('ो'))
+                        list.add(str.replace("ो","o"));
+                    if(ch.equals('ौ'))
+                        list.add(str.replace("ौ","au"));
+                    if(ch.equals('क'))
+                    {
+                        list.add(str.replace("क","k"));                                                        
+                        list.add(str.replace("क","q"));                                
+                        list.add(str.replace("क","c"));                                
+                    }
+                    if(ch.equals('ख'))
+                        list.add(str.replace("ख","k"));                                        
+                    if(ch.equals('ग'))
+                        list.add(str.replace("ग","g"));                                                                       
+                    if(ch.equals('घ'))        
+                        list.add(str.replace("घ","g")); 
+                    if(ch.equals('ङ'))
+                        list.add(str.replace("ङ","g"));
+                    if(ch.equals('च'))
+                        list.add(str.replace("च","c"));
+                    if(ch.equals('छ'))                    
+                        list.add(str.replace("छ","c"));                                                    
+                    if(ch.equals('ज'))             
+                    {
+                        list.add(str.replace("ज","j"));                        
+                        list.add(str.replace("ज","g"));                        
+                        list.add(str.replace("ज","z"));
+                        list.add(str.replace("ज","s"));                        
+                    }
+                    if(ch.equals('झ'))
+                    {                           
+                        list.add(str.replace("झ","j"));                        
+                        list.add(str.replace("झ","s"));                        
+                        list.add(str.replace("झ","z"));                        
+                    }
+                    if(ch.equals('ञ'))
+                        list.add(str.replace("ञ","j"));                                                
+                    if(ch.equals('ट'))
+                        list.add(str.replace("ट","t"));                                                                       
+                    if(ch.equals('ठ'))
+                        list.add(str.replace("ठ","t"));
+                    if(ch.equals('ड'))
+                    {
+                        list.add(str.replace("ड","d"));                        
+                        list.add(str.replace("ड","d"));                                                
+                    }
+                    if(ch.equals('ढ'))
+                        list.add(str.replace("ढ","d"));
+                    if(ch.equals('ण'))
+                        list.add(str.replace("ण","n"));
+                    if(ch.equals('त'))
+                        list.add(str.replace("त","t"));                                                
+                    if(ch.equals('थ'))
+                        list.add(str.replace("थ","t"));
+                    if(ch.equals('द'))
+                        list.add(str.replace("द","d"));
+                    if(ch.equals('ध'))
+                        list.add(str.replace("ध", "d"));
+                    if(ch.equals('न'))
+                        list.add(str.replace("न","n"));
+                    if(ch.equals('प'))
+                        list.add(str.replace("प","p"));
+                    if(ch.equals('फ'))
+                    {
+                        list.add(str.replace("फ","p"));
+                        list.add(str.replace("फ","f"));
+                    }
+                    if(ch.equals('ब'))
+                        list.add(str.replace("ब","b"));
+                    if(ch.equals('भ'))
+                        list.add(str.replace("भ","b"));
+                    if(ch.equals('म'))
+                        list.add(str.replace("म", "m"));
+                    if(ch.equals('य'))
+                        list.add(str.replace("य","y"));
+                    if(ch.equals('र'))
+                        list.add(str.replace("र","r"));                                                
+                    if(ch.equals('ऋ') || ch.equals('ृ'))
+                    {
+                        list.add(str.replace("ऋ","r"));
+                        list.add(str.replace("ृ","r"));
+                    }    
+                    if(ch.equals('ल'))
+                        list.add(str.replace("ल","l"));
+                    if(ch.equals('व'))
+                    {
+                        list.add(str.replace("व","v"));
+                        list.add(str.replace("व","w"));
+                    }
+                    if(ch.equals('श'))    
+                    {
+                        list.add(str.replace("श","s"));
+                        list.add(str.replace("श","sh"));    //EXTRA
+                    }
+                    if(ch.equals('ष'))
+                        list.add(str.replace("ष","s"));
+                    if(ch.equals('स'))
+                    {
+                        list.add(str.replace("स","s"));
+                        list.add(str.replace("स","c"));
+                    }
+                    if(ch.equals('ह'))
+                        list.add(str.replace("ह","h"));                                                
+                    if(ch.equals('ज़'))
+                    {
+                        list.add(str.replace("ज़","z"));
+                        list.add(str.replace("ज़","x"));
+                        list.add(str.replace("ज़","s"));
+                    }
+                    if(ch.equals('ड़'))
+                        list.add(str.replace("ड़","d"));                        
+                    if(ch.equals('ढ़'))
+                        list.add(str.replace("ढ़","d"));
+                    if(ch.equals('फ़'))
+                    {
+                        list.add(str.replace("फ़","f"));
+                        list.add(str.replace("फ़","p"));
+                    }                             
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("Exception caught: "+e);
+                e.printStackTrace();
+            }       
+        }
+        for(Object oc: list)
+        {
+                hs.add((String)oc);
+        }
+        return hs;
+    }
+    public static HashSet repitions(HashSet<String> s)
+    {
+        int x;
+        String temp;
+        Character tc1,tc2;
+        List<String> l = new CopyOnWriteArrayList<String>();
+        for(Object o: l)
+        {
+            temp = (String)o;
+            x=0;
+            while(((temp.length()-1)>x))
+            {
+                tc1=temp.charAt(x);
+                tc2=temp.charAt(x+1);
+                if(tc1.compareTo(tc2)==0)
+                {
+                    temp=temp.substring(0,x)+temp.substring(x+1);                       
+                }
+                l.add(temp);
+                x++;
+            }
+        }
+        for(Object o: l)
+            s.add((String)o);
+              
+        return s;
+    }
+    public static String repitions1(String vx)
+    {
+        int x=0;
+        Character tc1,tc2;
+        while(((vx.length()-1)>x))
+        {
+            tc1=vx.charAt(x);
+            tc2=vx.charAt(x+1);
+            if(tc1.compareTo(tc2)==0)
+                vx=vx.substring(0,x)+vx.substring(x+1);                       
+            x++;
+        }
+
+        return vx;
+    }
+    public static int found(HashSet<String> s, String tr)
+    {
+        if(s.contains(tr))
+            return 1;
+        else
+            return -1;
+    }
+    /*public static int vowels_check(String uc, String vc )
+    {
+        List hl=new ArrayList();
+        List el=new ArrayList();
+        List nl=new ArrayList();
+        for(int i=0; i<uc.length(); i++)
+        {
+          if((uc.charAt(i)=='अ')||(uc.charAt(i)=='आ')||(uc.charAt(i)=='इ')||(uc.charAt(i)=='ई')||(uc.charAt(i)=='उ')||(uc.charAt(i)=='ऊ')||(uc.charAt(i)=='ऋ')||(uc.charAt(i)=='ए')||(uc.charAt(i)=='ऐ')||(uc.charAt(i)=='ओ')||(uc.charAt(i)=='औ'))
+          {
+              hl.add(uc.charAt(i));
+          }
+        }
+        for(int i=0; i<vc.length(); i++)
+        {
+          if((vc.charAt(i)=='a')||(vc.charAt(i)=='e')||(vc.charAt(i)=='i')||(vc.charAt(i)=='o')||(vc.charAt(i)=='u'))
+          {
+              el.add(vc.charAt(i));
+          }
+        }
+        System.out.println("Vowel list of U: "+hl);
+        System.out.println("Vowel list of V: "+el);
+        Character hch, ech;
+        
+        for(int index=0; index<hl.size(); index++)
+        {
+            hch=(Character)hl.get(index);
+            if(hch=='अ')
+                nl.add("a");
+            if(hch=='आ')
+                nl.add("aa");
+            if(hch=='इ')
+                nl.add("i");
+            if(hch=='ई')
+                nl.add("ee");
+            if(hch=='उ')
+                nl.add("u");
+            if(hch=='ऊ')
+                nl.add("oo");
+            if(hch=='ए')
+                nl.add("e");
+            if(hch=='ऐ')
+                nl.add("ai");
+            if(hch=='ओ')
+                nl.add("o");
+            if(hch=='औ')
+                nl.add("au");
+            if(hch=='ा')
+                nl.add("a");
+            if(hch=='ि')
+                nl.add("i");
+            if(hch=='ी')
+                nl.add("ee");
+            if(hch=='ु')
+                nl.add("u");
+            if(hch=='ू')
+                nl.add("oo");
+            if(hch=='े')
+                nl.add("e");
+            if(hch=='ै')
+                nl.add("ai");
+            if(hch=='ो')
+                nl.add("o");
+            if(hch=='ौ')
+                nl.add("au");
+        }
+        System.out.println("NEW LIST: "+nl);
+        
+        
+        return c;
+    }*/
+    
+    public static void main(String[] args) 
+    {
+        String v,u;
+        int value;
+        HashSet<String> set = new HashSet<String>();
+        //मंत्र    ं mantr           
+        //नहीं     ं  nahi
+        //u="क्रान्ती";
+        //v="kranti";
+        //u="अमेिकी";
+        //v="america";
+//        if(ch.compareTo('ॉ')==0);
+        //u="कृपया";
+        //v="kripayaa";
+        //u="अंकित";
+        //v="ankita";
+        //u="प्रीती";  //PROBLEM PAIR
+        //v="preeto";
+        //u="अवि";
+        //v="ovi";
+        //u="दिवा"; //PROBLEM PAIR
+        //v="divoo";
+        //u="प्रियांशु";   //PROBLEM PAIR
+        //u="प्रियांशी";
+        //v="priyanshu";
+        //u="नहीं";   //PROBLEM PAIR
+        //v="nahi";
+        //v="hello";
+        //u="हेल्लो";
+        v="luck";   //English
+        u="लक";    //Transliterated
+        System.out.println("****originals****");
+        System.out.println("Hindi u: "+u);
+        System.out.println("Transliterated version of u(v): "+v);
+        if(boundary_checker(u,v)==0)
+        {
+            System.out.println("\nNot a match!");
+            System.exit(0);
+        }
+      //  u=remove_vowels(u);
+      //  v=remove_vowels(v);
+        System.out.println("\n****After Vowels Removal****");
+        System.out.println("Hindi u: "+u);
+        System.out.println("Transliterated version of u(v): "+v);
+        set=replacement(u);
+        System.out.println("strings: "+set);
+        value=found(set, v);
+        if(value>=0)
+            System.out.println("\nYes, its a Match!");
+        else
+        {
+            set=repitions(set);
+            v=repitions1(v);
+            System.out.println("\n****After Repitions****");
+            for(String o: set)
+            {
+                System.out.println("Unique Strings of Hindi: "+o);
+            }
+            System.out.println("Transliterated version of u(v): "+v);
+            value=found(set, v);
+            if(value>=0)
+                System.out.println("\nYes, its a Match!");
+            else
+                System.out.println("\nNot a match!");
+        }
+    }
+}

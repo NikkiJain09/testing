@@ -1,0 +1,63 @@
+Demo:	http://openmrs.org/demo/
+
+Introduction to openmrs:	http://openmrs.org/2014/02/introducing-openmrs-2-0/
+
+Getting started: 	https://wiki.openmrs.org/display/RES/OpenMRS+University
+
+Documentation:		https://wiki.openmrs.org/display/docs/Home
+
+
+1. Installation guide:   http://www.motechproject.org/devdocs/installation.html
+			 http://en.flossmanuals.net/openmrs-guide/installation-and-initial-setup/
+
+2. Running:	http://www.motechproject.org/devdocs/running.html
+
+3. Motech Repsitory:	https://code.google.com/p/motech/source/checkout
+
+4. Motech modules:	https://code.google.com/p/motech/source/browse/?name=0.18.X#git%2Fmodules%2Fmobileforms%2Fapi
+			https://modules.openmrs.org/#/search
+--------------------------------
+HTML Form Entry Module HTML Reference:	
+
+https://wiki.openmrs.org/display/docs/HTML+Form+Entry+Module+HTML+Reference?focusedCommentId=76677885#comment-76677885
+
+https://wiki.openmrs.org/display/docs/HTML+Form+Entry+Module+HTML+Reference
+
+Htmlform Implementers Training:	https://wiki.openmrs.org/display/RES/Htmlform+Implementers+Training
+
+===================
+
+XForms:		https://modules.openmrs.org/#/show/155/xforms
+HTML Form Entry:	https://modules.openmrs.org/#/show/58/htmlformentry
+
+https://ci.openmrs.org/allPlans.action;jsessionid=0ECC9C637E9441FE0126B752F060A3FF
+=========================
+
+Form banks:  https://wiki.openmrs.org/display/RES/Form+Bank
+
+
+HTML Form Entry JavaScript Reference:    https://wiki.openmrs.org/display/docs/HTML+Form+Entry+JavaScript+Reference
+
+
+--------------------------------
+University Forum:
+
+http://notes.openmrs.org/OpenMRS-University-2014-05-28
+
+
+
+================
+Java Docs:	http://docs.motechproject.org/en/latest/packages.html  
+
+=================
+
+self read:
+
+http://notes.openmrs.org/OpenMRS-University-2014-03-12
+
+
+
+
+
+
+

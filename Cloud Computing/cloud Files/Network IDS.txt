@@ -1,0 +1,32 @@
+PF: Traffic Redirection (Port Forwarding)
+ 
+listen to port 8080
+
+or we can use netstat command and will specify the specific port in this command also and will directly save that in a text file [http get; http post]...ftp also
+
+or we can use tcpdump...as it works on network layer...so whenever request passes through that layer action can be taken up
+http://www.slashroot.in/packet-capturing-tcpdump-command-linux
+
+
+
+Google Safe browser api
+https://developers.google.com/safe-browsing/lookup_guide
+
+and to know the DNS name we can use host command
+
+host
+The host command performs DNS lookups. Give it a domain name and you’ll see the associated IP address. Give it an IP address and you’ll see the associated domain name.
+
+host howtogeek.com
+host 208.43.115.82
+
+we will make  script for this and make it entry in the startup list of the OS..so that it automatically startups as system turns on
+
+
+or we can use tcpdump....just like wireshark.....it will allow us to make filtering of packets easily
+
+
+
+and to make all this energy efficient we can check whether internet is on or not...like there is a command for checking whether the cable is plugged in or not into a network interface.....ifplugstatus
+
+or use ifconfig to view the status of all currently active network interfaces, including their names

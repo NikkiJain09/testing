@@ -1,0 +1,16 @@
+Cluster[0]: RRRRRRRRRRRRRRRR
+Cluster[1]: RRRRRRRRRRRRRRRRRRRRRRR
+Cluster[2]: RRRRRRR
+Cluster[3]: RRRRRRRR
+Cluster[4]: RRRRRRRRRRR
+Cluster[5]: RRRR
+Cluster[6]: RRRRRRRRR
+Cluster[7]: RRRRRRRRRRRR
+Cluster[8]: RRRRRRRRRRRRR
+Cluster[9]: RRRR
+Cluster[10]: RRRR
+Cluster[11]: R
+Count: 12
+
+
+here R is signifying the ride...like cluster[1] has the max no of rides in it...so max placement of guards/controlling activities/supreviosion is required over there

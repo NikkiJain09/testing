@@ -1,0 +1,4 @@
+//Normal
+.eml
+.jpg
+.mp3	//Using of media files for attacks is pretty less as they don't have code

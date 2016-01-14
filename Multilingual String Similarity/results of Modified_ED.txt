@@ -1,0 +1,23 @@
+﻿=======Results of Modified_ED.java (For English Words)=======
+
+
+Similarity with respect to "silk":
+
+(i)  "milk"	89.65672018777776%
+(ii) "uilk"	95.99867316862947%
+(iii)"ilk"	95.99867316862947%
+(iv) "xsilk"	96.79893853490358%
+(v)  "asilk"	96.79893853490358%
+(vi) "silk"	100.0%
+
+
+=======Results of Modified_ED.java (For Hindi Words)=======
+
+Similarity with respect to "सोमवार" :
+
+(i)  "रविवार" 	71.29241440913725%
+(ii) "कसोमवार"	97.8255664755251%
+(iii)"ोमवार"	97.46316088811261%
+(iv) "सोमवा"	85.53890156806335%
+(v)  "त्रसोमवार"	94.92632177622522%
+(vi) "सोमवार"	100.0%

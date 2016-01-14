@@ -1,0 +1,21 @@
+------how to monitor port 80....to look for http get and post packets------
+
+
+through this what exactly we can do is check for the url a user trying to access, or getting responses from a partical URL
+
+Then we can send that URL to google user for its reliability issue.
+
+
+------Check if there is a way to know what commands we entered exactly, what we did actually!!------
+
+Like in cmd we entered the commands like: passwrd root, cd, grep...etc
+
+So if we can find out if there is some file which stores all the commands we accessed...either through command prompt or through graphical interface, where all that stuffs is stored
+
+
+Using this we can check for the various malicious activities like:
+
+Root login several times, changing the file access permissions, even though he is not the real user of the file and also he/she is not belonging to one of the allowed members of the group list...who are allowed to change/ modify the files..
+
+
+-----others points are written in the file saved @Amu's second home [Her System :P]----------
